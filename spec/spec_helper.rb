@@ -1,1 +1,1 @@
-require './parser.rb'
+require './lib/doc.rb'
