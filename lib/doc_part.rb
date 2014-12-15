@@ -1,5 +1,5 @@
 module Rain
-	class DocPart
-		
-	end
+  class DocPart
+    
+  end
 end

@@ -1,5 +1,5 @@
 module Rain
-	class Parser
-		
-	end
+  class Parser
+    
+  end
 end
