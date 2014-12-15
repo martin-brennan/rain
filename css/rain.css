@@ -1,0 +1,10 @@
+.hero { 
+  background: url(../img/rain.jpg) no-repeat center 75% fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  background-color: #2697d8;
+}
