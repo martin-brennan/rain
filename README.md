@@ -10,6 +10,8 @@ Rain also allows a large amount of customization when it comes to templating and
 
 Rain is a work-in-progress, at the time of writing document parsing is completed but HTML generation is not started.
 
+[See the Rain homepage (also WIP)](http://martin-brennan.github.io/rain)
+
 ## Usage
 Use the CLI provided (via Thor) to run the following command:
 
