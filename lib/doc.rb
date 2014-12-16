@@ -11,12 +11,14 @@ module Rain
     attr_accessor :parser, :type, :parts, :current_part, :lines, :title,
             :file_name, :file_contents, :file_ext
 
+    @@open_response = nil
+    @@open_param = nil
+
     # sets up the doc using the file name and contents
     # as a basis.
     def initialize(file_name, file_contents)
 
       # set up basic options and defaults
-      self.parser = Rain::Parser.new
       self.file_name = file_name
       self.file_contents = file_contents
       self.file_ext = File.extname(file_name)
@@ -30,6 +32,9 @@ module Rain
       when '.md', '.txt', '.markdown', '.mdown'
         self.type = :MARKDOWN
       end
+
+      # set parser with file type
+      self.parser = Rain::Parser.new(self.type)
 
       # set the default title to the proper-case file name
       # without the extension and underscores/dashes
@@ -56,6 +61,38 @@ module Rain
     def parse
       self.new_part
       self.file_contents.each_line do |line|
+
+        # parse the current line
+        result = self.parser.parse(line)
+
+        # figure out what to do based on the result type
+        case result[:type]
+        when :title
+          self.title = result[:title]
+        when :route
+          self.current_part.set_route(result[:route])
+        when :method
+          self.current_part.set_method(result[:method])
+        when :response
+          if result[:open]
+            @@open_response = result[:code]
+          else
+            @@open_response = nil
+          end
+        when :param
+          if result[:open]
+            @@open_param = result[:name]
+          else
+            @@open_param = nil
+          end
+        when :doc
+          if !@@open_response.nil?
+            self.current_part.append_response(@@open_response.to_i, response[:id], response[:text])
+          end
+          if !@@open_param.nil?
+            self.current_part.append_param(@@open_param, response[:text], response[:type], response[:default])
+          end
+        end
 
         self.lines += 1
       end

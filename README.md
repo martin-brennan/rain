@@ -43,3 +43,19 @@ documentation is titled like so for .md, .txt etc files
 - doc - The rest of non-tagged is just descriptive documentation
 - param - The api params, with type and default values
 - deperecated - Reasons for deprecation etc.
+
+{title This is the title}
+{method GET}
+{route /person/:id}
+{response 200}
+{
+  a: 1
+}
+{/response}
+These lines
+are the
+docs
+{param id integer}
+This is the param description
+{/param}
+{deprecated Because this route is bad}
