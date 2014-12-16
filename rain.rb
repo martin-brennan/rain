@@ -1,60 +1,43 @@
-require 'json'
-require './lib/tag_designator.rb'
+require 'thor'
 
-$current_block = {}
-$line_index = 1
-$doc_part_store = []
-$open_tag = nil
+class Rain::CLI < Thor
+	@@docs = []
 
-tag = Rain::TagDesignator.new
+	desc "generate [file/sources/**]", "Generates the rain documentation"
+	def generate(*sources)
+		puts "Rain is parsing files in the directories #{sources}"
 
-File.open("#{Dir.pwd}/parsefile.rb", "r").each_line do |line|
-	line.strip!
+		# loop through all of the file sources and generate docs
+		sources.each do |source|
+			@doc = Rain::Doc.new(source, File.read(Dir.pwd + "/#{source}"))
+			@doc.parse
 
-	if line.start_with? '#'
-		line.sub!('#', '')
-		line.strip!
-
-		if $current_block.empty?
-			$current_block[:line_start] = $line_index
+			@@docs << @doc
 		end
 
-		skip_doc = false
-
-		(skip_doc = true) if tag.is_method?(line)
-		(skip_doc = true) if tag.is_route?(line)
-		(skip_doc = true) if tag.is_response?(line)
-		
-		tag.is_doc?(line) unless skip_doc
-
-	else
-		if !$current_block.empty?
-			$current_block[:line_end] = $line_index
-			$doc_part_store << $current_block
-			$current_block = {}
-		end
+		build_html
 	end
 
-	$line_index += 1
+	desc "help", "Shows rain help documentation"
+	def help
+		print "       _      \n"
+		print "     _( )_    \n"
+		print "   _(     )_  \n"
+		print "  (_________) \n"
+		print "    \\ \\ \\ \\ \n"
+		print "     \\ \\ \\ \\ \n"
+		print "              \n"
+		print "---- RAIN ----\n"
+		print "              \n"
+		print "basic usage:\n"
+		print "  rain generate file/**/*.rb\n"
+	end
+
+	no_commands do
+		def build_html
+			@@docs.each do |doc|
+				p doc.title
+			end
+		end
+	end
 end
-
-p $doc_part_store
-p JSON.pretty_generate(eval($doc_part_store[0][:response]["200"].join))
-p $doc_part_store[0][:doc].join('\n')
-
-# rules
-
-# declaration
-# 
-# {method} GET
-# {route} /v1/app/auth
-# {doc}
-# Hello this is the first route
-# {/doc}
-#
-# {response 200}
-# {
-# 	id: 3294,
-# 	name: "martin brennan"
-# }
-# {/response}

@@ -21,13 +21,8 @@ Rain::DocPart
 - E.g. stores method, doc, route, responses, params
 - Model mostly
 
-Rain::TagDefinition
-- checks whether a line is a tag
-- parses information out of the tag
-
 documentation is titled like so for .rb files
 - {title ksldk} tag
-- class name
 - file name
 
 documentation is titled like so for .md, .txt etc files

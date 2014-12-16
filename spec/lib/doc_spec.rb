@@ -32,6 +32,7 @@ describe Rain::Doc do
   end
 
   it "should set the current doc part and add the old one to the parts array" do
+    @doc.current_part = Rain::DocPart.new
     @doc.new_part
     expect(@doc.parts.length).to eq 1
     expect(@doc.current_part.kind_of? Rain::DocPart).to eq true

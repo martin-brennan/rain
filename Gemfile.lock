@@ -55,3 +55,4 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   rspec
+  thor

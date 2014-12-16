@@ -5,7 +5,7 @@ module Rain
     def initialize
       self.responses = {}
       self.doc = []
-      self.route = '/'
+      self.route = '//'
       self.params = []
       self.headers = []
     end
@@ -43,11 +43,11 @@ module Rain
     def set_method(method)
 
       # capitalize and convert to a symbol if not already a symbol
-      method.capitalize!(method) if !method.kind_of? Symbol
+      method.upcase! if !method.kind_of? Symbol
 
       # check if the http method is valid
       valid_methods = [:GET, :PUT, :POST, :PATCH, :DELETE]
-      if !valid_methods.include?(method)
+      if !valid_methods.include?(method.to_sym)
         raise ArgumentError, "HTTP method must be valid (#{valid_methods.join(', ')})"
       end
 

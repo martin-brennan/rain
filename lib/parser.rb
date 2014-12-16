@@ -25,7 +25,7 @@ module Rain
 
       # convert blank lines to new lines
       if line == ""
-        line == "\n"
+        line = "\n"
       end
 
       # {title} tag
