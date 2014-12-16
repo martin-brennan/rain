@@ -120,9 +120,10 @@ module Rain
           # open response or param tag
           if !@@open_response.nil?
             self.current_part.append_response(@@open_response.to_i, @@open_response_id, result[:text])
-          end
-          if !@@open_param.nil?
+          elsif !@@open_param.nil?
             self.current_part.append_param(@@open_param, result[:text], @@open_param_type, @@open_param_default)
+          else
+            self.current_part.append_doc(result[:text])
           end
         end
 
@@ -132,8 +133,10 @@ module Rain
       # add the part and create a new one
       self.new_part
 
-      # remove any empty parts
-      self.parts = self.parts.select{ |part| part.route != "//" }
+      # remove any empty parts (for ruby docs)
+      if self.type == :RUBY
+        self.parts = self.parts.select{ |part| part.route != "//" }
+      end
     end
   end
 end

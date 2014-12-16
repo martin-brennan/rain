@@ -36,7 +36,7 @@ class Rain::CLI < Thor
 	no_commands do
 		def build_html
 			@@docs.each do |doc|
-				p doc.title
+				p doc.parts[0].doc
 			end
 		end
 	end
