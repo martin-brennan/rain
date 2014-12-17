@@ -48,12 +48,26 @@ class Rain::CLI < Thor
 			Dir.mkdir('./rain_out')
 			Dir.mkdir('./rain_out/css')
 
-			# copy the template css to the output dir
-			FileUtils.cp_r './templates/css/.', './rain_out/css'
+			# check if there are local templates before copying from gem dir
+			if File.exist?('./templates/') && File.exist?('./templates/css/')
 
-			# load the templates
-			layout_template = File.read('./templates/layout.erb')
-			doc_template = File.read('./templates/doc.erb')
+				# copy the template css to the output dir
+				FileUtils.cp_r './templates/css/.', './rain_out/css'
+
+				# load the templates
+				layout_template = File.read('./templates/layout.erb')
+				doc_template = File.read('./templates/doc.erb')
+
+			else
+
+				# copy the templates from the gem directory
+				spec = Gem::Specification.find_by_name("rain-doc")
+				FileUtils.cp_r spec.gem_dir + '/templates/css/.', './rain_out/css'
+
+				# load the templates
+				layout_template = File.read(spec.gem_dir + '/templates/layout.erb')
+				doc_template = File.read(spec.gem_dir + '/templates/doc.erb')
+			end
 
 			# load the doc properties and parts into the doc template
 			@@docs.each do |doc|

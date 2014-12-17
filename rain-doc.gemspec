@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rain-doc'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.licenses    = ['MIT']
   s.summary     = "Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc."
   s.description = "Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc. \
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
                    Branding and unity of documentation appearance is important and Rain offers a simple ebr-based template system."
   s.authors     = ["Martin Brennan"]
   s.email       = 'mjrbrennan@gmail.com'
-  s.files       = ["lib/rain.rb", "lib/parser.rb", "lib/doc.rb", "lib/doc_part.rb"] + Dir["templates/*.erb"]
+  s.files       = ["lib/rain.rb", "lib/parser.rb", "lib/doc.rb", "lib/doc_part.rb"] + Dir["templates/*.erb"] + Dir["templates/css/*.css"]
   s.homepage    = 'http://martin-brennan.github.io/rain/'
   s.bindir      = 'bin'
 
