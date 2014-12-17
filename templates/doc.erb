@@ -1,6 +1,46 @@
+<!-- loop through all of the doc parts for the doc and render output -->
 <% parts.each do |part| %>
-  <p><%= part[:http_method] %></p>
+
+  <!-- HTTP method and route (if both specified) -->
+  <% if !part[:route].nil? && !part[:http_method].nil? %>
+    <p><strong><%= part[:http_method] %></strong> <%= part[:route] %></p>
+  <% end %>
+
+  <!-- display all of the docs together for the part -->
   <% part[:doc].each do |doc| %>
-    <%= doc %>
+    <p><%= doc %></p>
+  <% end %>
+
+  <!-- show all of the params in a table -->
+  <% if part[:params].length > 0 %>
+    <h4>Parameters</h4>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <% part[:params].each do |param| %>
+        <tr>
+          <td><%= param[:name] %></td>
+          <td><%= param[:type] %></td>
+          <td><%= param[:default].nil? ? 'N/A' : param[:default] %></td>
+          <td><%= param[:text] %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <!-- show all of the responses with examples -->
+  <% if part[:responses].length > 0 %>
+    <h4>Response Examples</h4>
+    <% part[:responses].each do |key, array| %>
+      <% response[key].each do |rkey, rarray| %>
+        <p><strong><%= key %></strong> <%= rkey.upcase %></p>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>

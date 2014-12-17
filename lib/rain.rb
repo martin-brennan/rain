@@ -60,6 +60,7 @@ class Rain::CLI < Thor
 
 				# create an openstruct from the current doc and render into the template
 				doc_os = OpenStruct.new(doc.to_hash)
+
 				doc_rendered = ERB.new(doc_template).result(doc_os.instance_eval {binding})
 
 				# create a struct with the rendered doc output then render into the layout
