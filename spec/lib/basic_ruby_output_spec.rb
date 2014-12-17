@@ -27,6 +27,6 @@ describe "basic ruby output from the doc parser" do
   it "has one 200 status response" do
     responses = @@doc.parts[0].responses
 
-    expect(responses[200][:ok].join(' ')).to eq "{ id: 1, name: 'John Smith', age: 22 }"
+    expect(responses.select { |resp| resp[:code] == 200 && resp[:id] == 'ok' }.first[:text].join(' ')).to eq "{ id: 1, name: 'John Smith', age: 22 }"
   end
 end

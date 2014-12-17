@@ -8,7 +8,7 @@ describe Rain::DocPart do
 
   it "initializes with the required defaults for method, responses, doc, route, params & headers" do
     expect(@part.http_method).to eq nil
-    expect(@part.responses.empty?).to eq true
+    expect(@part.responses).to eq []
     expect(@part.doc).to eq []
     expect(@part.route).to eq '//'
     expect(@part.params).to eq []

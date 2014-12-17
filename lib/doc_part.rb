@@ -3,7 +3,7 @@ module Rain
     attr_accessor :http_method, :responses, :route, :doc, :params, :headers
 
     def initialize
-      self.responses = {}
+      self.responses = []
       self.doc = []
       self.route = '//'
       self.params = []
@@ -21,21 +21,35 @@ module Rain
         raise ArgumentError, 'You can only use integer codes for HTTP response examples.'
       end
 
-      # set defaults if the identifiers do not exist
-      self.responses[code] = {} if self.responses[code].nil?
-      self.responses[code][id.to_sym] = [] if self.responses[code][id.to_sym].nil?
+      # try and find the current response and id in the array
+      current_response = self.responses.select { |resp| resp[:code] == code && resp[:id] == id }.first
 
-      self.responses[code][id.to_sym] << text
+      # add to array if nil
+      if current_response.nil?
+        self.responses << {
+          code: code,
+          id: id,
+          text: [text]
+        }
+      else
+
+        # otherwise append to the current response
+        self.responses.each do |resp|
+          if resp[:code] == code && resp[:id] == id
+            resp[:text] << text
+          end
+        end
+      end
     end
 
     # gets a response part by code and id and
     # joins the parts of the text
     def get_response(code, id)
-      response = self.responses[code][id.to_sym]
+      response = self.responses.select { |resp| resp[:code] == code && resp[:id] == id }.first
 
       raise 'Response code and id reference does not exist.' if response.nil?
 
-      response.join
+      response[:text].join
     end
 
     # sets the http method for the
