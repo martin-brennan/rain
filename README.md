@@ -1,12 +1,12 @@
 # Rain
 
-Rain is a ruby api documentation tool inspired by yard and rdoc.
+Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc.
 
-The aim of rain is to generate beautiful api documentation from a ruby comment syntax with markdown mixed in.
+The aim of rain is to generate beautiful API documentation from a ruby comment syntax with markdown mixed in.
 
 The documentation can be inline in .rb files, or separate .md or .txt files for overall architecture documentation.
 
-Rain also allows a large amount of customization when it comes to templating and appearance of the api documentation. branding and unity of documentation appearance is important and rain offers a simple ebr-based template system.
+Rain also allows a large amount of customization when it comes to templating and appearance of the API documentation. branding and unity of documentation appearance is important and rain offers a simple ebr-based template system.
 
 Rain is a work-in-progress, at the time of writing document parsing is completed but HTML generation is not started.
 
@@ -56,6 +56,7 @@ There are several different tags that can be used in Rain. Here are their descri
 - response - Can be combined with status. HTTP response examples. Can be more than one of the same code. Needs a unique identifier as well as the code e.g. OK.
 - doc - The rest of non-tagged comments/docs is just descriptive documentation. In the case of response and params tags, the docs contribute to that tag's description.
 - param - The api params, with type and default values.
+- header - A HTTP header that is required for the route.
 
 ```ruby
 # These are the docs that are not related

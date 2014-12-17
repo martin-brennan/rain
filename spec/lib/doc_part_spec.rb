@@ -10,7 +10,7 @@ describe Rain::DocPart do
     expect(@part.http_method).to eq nil
     expect(@part.responses.empty?).to eq true
     expect(@part.doc).to eq []
-    expect(@part.route).to eq '/'
+    expect(@part.route).to eq '//'
     expect(@part.params).to eq []
     expect(@part.headers).to eq []
   end
@@ -64,5 +64,14 @@ describe Rain::DocPart do
   it "should add a HTTP header" do
     @part.append_header('X-Custom-Header', 'This is a custom header.')
     expect(@part.get_header('X-Custom-Header')).to eq 'This is a custom header.'
+  end
+
+  it "should convert the doc part into a hash" do
+    @part.append_doc("this route is great it returns a user")
+    @part.append_doc("also id")
+    
+    h = @part.to_hash
+
+    expect(h[:doc].length).to eq 2
   end
 end

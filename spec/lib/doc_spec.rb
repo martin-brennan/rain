@@ -44,4 +44,10 @@ describe Rain::Doc do
     expect(@doc.lines).to eq 2
   end
 
+  it "should convert the doc class into a hash for templating" do
+    h = @doc.to_hash
+    
+    expect(h[:parts].length).to eq 1
+  end
+
 end

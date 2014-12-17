@@ -28,7 +28,7 @@ module Rain
         line = "\n"
       end
 
-      # {title} tag
+      # title tag
       if is_title?(line)
         return {
           tag: :title,
@@ -36,7 +36,7 @@ module Rain
         }
       end
 
-      # {method} tag
+      # method tag
       if is_method?(line)
         return {
           tag: :method,
@@ -44,7 +44,7 @@ module Rain
         }
       end
 
-      # {route} tag
+      # route tag
       if is_route?(line)
         return {
           tag: :route,
@@ -52,7 +52,7 @@ module Rain
         }
       end
 
-      # {response} tag. must determine whether to open the tag
+      # response tag. must determine whether to open the tag
       # for extra docs or close it
       if is_response?(line)
         open = line.start_with?('{/response') ? false : true
@@ -64,7 +64,7 @@ module Rain
         }
       end
 
-      # {param} tag. must determine whether to open the tag
+      # param tag. must determine whether to open the tag
       # for extra docs or close it
       if is_param?(line)
         open = line.start_with?('{/param') ? false : true

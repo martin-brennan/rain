@@ -109,5 +109,16 @@ module Rain
 
       return header[:text]
     end
+
+    def to_hash
+      return {
+        route: self.route,
+        params: self.params,
+        headers: self.headers,
+        doc: self.doc,
+        responses: self.responses,
+        http_method: self.http_method
+      }
+    end
   end
 end

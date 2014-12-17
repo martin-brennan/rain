@@ -1,0 +1,24 @@
+Gem::Specification.new do |s|
+  s.name        = 'rain'
+  s.version     = '0.0.1'
+  s.licenses    = ['MIT']
+  s.summary     = "Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc."
+  s.description = "The aim of rain is to generate beautiful API documentation from a ruby comment syntax with markdown mixed in. \ 
+                   The documentation can be inline in .rb files, or separate .md or .txt files for overall architecture documentation. \
+                   Rain also allows a large amount of customization when it comes to templating and appearance of the API documentation. \
+                   Branding and unity of documentation appearance is important and rain offers a simple ebr-based template system."
+  s.authors     = ["Martin Brennan"]
+  s.email       = 'mjrbrennan@gmail.com'
+  s.files       = ["lib/rain.rb", "lib/parser.rb", "lib/doc.rb", "lib/doc_part.rb"] + Dir["templates/*.erb"]
+  s.homepage    = 'http://martin-brennan.github.io/rain/'
+  s.bindir      = 'bin'
+
+  s.executables << 'rain'
+
+  s.post_install_message = "Rain installed successfully! Run rain generate file/paths/*.rb to get started."
+
+  s.add_development_dependency 'rspec', '3.1.0'
+  s.add_development_dependency 'guard-rspec', '4.5.0'
+
+  s.add_runtime_dependency 'thor', '0.19.1'
+end

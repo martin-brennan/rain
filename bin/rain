@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/doc'
-require_relative '../rain'
+path = __FILE__
+while File.symlink?(path)
+path = File.expand_path(File.readlink(path), File.dirname(path))
+end
+$:.unshift(File.join(File.dirname(File.expand_path(path)), '..', 'lib'))
+
+require 'doc'
+require 'rain'
 
 Rain::CLI.start(ARGV)

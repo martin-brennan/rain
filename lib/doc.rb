@@ -138,5 +138,17 @@ module Rain
         self.parts = self.parts.select{ |part| part.route != "//" }
       end
     end
+
+    def to_hash
+      return {
+        file_name: self.file_name,
+        file_contents: self.file_contents,
+        file_ext: self.file_ext,
+        title: self.title,
+        lines: self.lines,
+        parts: self.parts.map { |part| part.to_hash },
+        type: self.type.to_s
+      }
+    end
   end
 end

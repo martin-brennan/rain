@@ -1,0 +1,6 @@
+<% parts.each do |part| %>
+  <p><%= part[:http_method] %></p>
+  <% part[:doc].each do |doc| %>
+    <%= doc %>
+  <% end %>
+<% end %>
