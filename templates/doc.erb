@@ -37,10 +37,9 @@
   <!-- show all of the responses with examples -->
   <% if part[:responses].length > 0 %>
     <h4>Response Examples</h4>
-    <% part[:responses].each do |key, array| %>
-      <% response[key].each do |rkey, rarray| %>
-        <p><strong><%= key %></strong> <%= rkey.upcase %></p>
-      <% end %>
+    <% part[:responses].each do |response| %>
+      <p><strong><%= response[:code] %></strong> <%= response[:id].upcase %></p>
+      <pre><code><%= response[:text].join("\n") %></code></pre>
     <% end %>
   <% end %>
 <% end %>
