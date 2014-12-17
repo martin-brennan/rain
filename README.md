@@ -1,5 +1,7 @@
 # Rain
 
+[![Gem Version](https://badge.fury.io/rb/rain-doc.svg)](http://badge.fury.io/rb/rain-doc)
+
 Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc.
 
 The aim of rain is to generate beautiful API documentation from a ruby comment syntax with markdown mixed in.
