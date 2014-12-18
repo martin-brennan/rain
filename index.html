@@ -4,9 +4,13 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
   <link rel="stylesheet" type="text/css" href="css/rain.css" />
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/hybrid.min.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
   <div class="row hero">
+    <a href="https://github.com/martin-brennan/rain"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <div class="container" style="margin: 0 auto">
       <div class="row">
         <div class="twelve columns" style="color: white; padding: 5% 0">
@@ -19,7 +23,31 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        
+        <h3>Installation <a href="http://badge.fury.io/rb/rain-doc"><img src="https://badge.fury.io/rb/rain-doc.svg" alt="Gem Version" height="18"></a></h3>
+        <p>Simply install from rubygems.org. This will install the gem, the <code>raindoc</code> executable and the template files for the gem.</p>
+        <pre><code class="bash">gem install rain-doc</code></pre>
+        <p>Or, include the gem in your Gemfile if you're using Bundler.</p>
+        <pre><code class="ruby">gem 'rain-doc'</code></pre>
+        <h3>Usage</h3>
+        <p>Use the CLI provided (via Thor) to run the following command:</p>
+        <pre><code class="bash">raindoc generate file/paths/*</code></pre>
+        <p>Where file/paths are a list of .md, .markdown, .txt, .mdown or .rb files.</p>
+        <h4>Options</h4>
+        <p>Rain has several command line options that can be used to change the output.</p>
+        <table class="u-full-width">
+          <tr>
+            <th>Option</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>--s</td>
+            <td>Parses methods (def, get, put, post, delete) and classes and outputs them into the HTML output with their comments/docs</td>
+          </tr>
+          <tr>
+            <td>--lp</td>
+            <td>Logs each file line parse's output so you can see where the parser may be going wrong if the desired effect is not achieved</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
