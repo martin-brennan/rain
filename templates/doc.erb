@@ -3,9 +3,9 @@
 
   <!-- HTTP method and route (if both specified) -->
   <% if !part[:route].nil? && !part[:http_method].nil? %>
-    <p><strong><%= part[:http_method] %></strong> <%= part[:route] %></p>
+    <p id="<%= part[:route].gsub('/', '-').gsub(':', '') %>"><strong><%= part[:http_method] %></strong> <%= part[:route] %></p>
   <% elsif !part[:signature].nil? %>
-    <p><strong><%= part[:signature] %></strong></p>
+    <p id="<%= part[:signature].gsub(' ', '-').gsub(',', '').gsub('(', '-').gsub(')', '-')[0..12] %>"><strong><%= part[:signature] %></strong></p>
   <% end %>
 
   <!-- display all of the docs together for the part -->

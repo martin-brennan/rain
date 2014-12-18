@@ -1,0 +1,7 @@
+<ul>
+  <li><a href="<%= navdoc[:url] %>"><%= navdoc[:title] %></a>
+  <ul><% navdoc[:parts].each do |part| %>
+    <li><a href="<%= part[:url] %>"><%= part[:title] %></a></li>
+  <% end %></ul>
+  </li>
+</ul>

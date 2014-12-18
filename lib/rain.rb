@@ -60,6 +60,7 @@ class Rain::CLI < Thor
 				# load the templates
 				layout_template = File.read('./templates/layout.erb')
 				doc_template = File.read('./templates/doc.erb')
+				nav_template = File.read('./templates/nav.erb')
 
 			else
 
@@ -70,6 +71,51 @@ class Rain::CLI < Thor
 				# load the templates
 				layout_template = File.read(spec.gem_dir + '/templates/layout.erb')
 				doc_template = File.read(spec.gem_dir + '/templates/doc.erb')
+				nav_template = File.read(spec.gem_dir + '/templates/nav.erb')
+			end
+
+			# loop through all of the docs and generate navigation from the docs and their parts
+			nav_parts = []
+			@@docs.each do |doc|
+
+				# get the html file name (same used for output) from the doc openstruct
+				doc_os = OpenStruct.new(doc.to_hash)
+				html_file_name = File.basename(doc_os.file_name, doc_os.file_ext) + '.html'
+
+				# set up the nav hash for the doc
+				nav = {
+					navdoc: {
+						title: doc_os.title,
+						url: "#{html_file_name}",
+						parts: []
+					}
+				}
+
+				# markdown docs do not have parts as the whole page counts as a "doc"
+				if doc_os.type != "MARKDOWN"
+
+					# loop through all of the parts and depending on whether
+					# it is for a signature or a route, construct the #anchor
+					# url differnetly
+					doc_os.parts.each do |part|
+						if !part[:signature].nil?
+							nav[:navdoc][:parts] << {
+								title: part[:signature],
+								url: "#{html_file_name}##{part[:signature].gsub(' ', '-').gsub(',', '').gsub('(', '-').gsub(')', '-')[0..12]}"
+							}
+						else
+							nav[:navdoc][:parts] << {
+								title: part[:route],
+								url: "#{html_file_name}##{part[:route].gsub('/', '-').gsub(':', '')}"
+							}
+						end
+					end
+				end
+
+				# render the nav and append it to the array of nav parts
+				nav_os = OpenStruct.new(nav)
+				nav_rendered = ERB.new(nav_template).result(nav_os.instance_eval {binding})
+				nav_parts << nav_rendered
 			end
 
 			# load the doc properties and parts into the doc template
@@ -77,11 +123,10 @@ class Rain::CLI < Thor
 
 				# create an openstruct from the current doc and render into the template
 				doc_os = OpenStruct.new(doc.to_hash)
-
 				doc_rendered = ERB.new(doc_template).result(doc_os.instance_eval {binding})
 
-				# create a struct with the rendered doc output then render into the layout
-				layout_os = OpenStruct.new({ doc_output: doc_rendered, title: doc_os.title })
+				# create a struct with the rendered doc output then render into the layout with nav
+				layout_os = OpenStruct.new({ doc_output: doc_rendered, title: doc_os.title, nav_parts: nav_parts })
 				html = ERB.new(layout_template).result(layout_os.instance_eval {binding})
 
 				# write the html to a file

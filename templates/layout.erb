@@ -6,9 +6,17 @@
 </head>
 <body>
   <div class="container">
-    <div class="twelve columns" style="padding: 20px 0">
-      <h2><%= title %></h2>
-      <%= doc_output %>
+    <div class="row">
+      <div class="three columns" style="padding: 20px 0">
+        <h5>Navigation</h5>
+        <% nav_parts.each do |part| %>
+          <%= part %>
+        <% end %>
+      </div>
+      <div class="nine columns" style="padding: 20px 0">
+        <h2><%= title %></h2>
+        <%= doc_output %>
+      </div>
     </div>
   </div>
 </body>
