@@ -4,12 +4,14 @@
   <!-- HTTP method and route (if both specified) -->
   <% if !part[:route].nil? && !part[:http_method].nil? %>
     <p><strong><%= part[:http_method] %></strong> <%= part[:route] %></p>
+  <% elsif !part[:signature].nil? %>
+    <p><strong><%= part[:signature] %></strong></p>
   <% end %>
 
   <!-- display all of the docs together for the part -->
-  <% part[:doc].each do |doc| %>
-    <p><%= doc %></p>
-  <% end %>
+  <p><% part[:doc].each do |doc| %>
+    <%= doc %>
+  <% end %></p>
 
   <!-- show all of the params in a table -->
   <% if part[:params].length > 0 %>

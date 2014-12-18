@@ -109,4 +109,8 @@ describe Rain::Parser do
   it "should return nil if the current line has no documentation" do
     expect(@parser.parse("   ")).to eq nil
   end
+
+  it "should return the signature if the line with no documentation starts with def, get, put, post or delete" do
+    expect(@parser.parse("def html_out(rendered)", true)).to eq({ tag: :signature, text: "def html_out(rendered)" })
+  end
 end

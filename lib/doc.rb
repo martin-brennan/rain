@@ -18,10 +18,11 @@ module Rain
     @@open_param_type = nil
     @@open_param_default = nil
     @@log_lines = false
+    @@parse_signatures = false
 
     # sets up the doc using the file name and contents
     # as a basis.
-    def initialize(file_name, file_contents, log_lines = false)
+    def initialize(file_name, file_contents, log_lines = false, parse_signatures = false)
 
       # set up basic options and defaults
       self.file_name = file_name
@@ -30,6 +31,7 @@ module Rain
       self.parts = []
       self.lines = 0
       @@log_lines = log_lines
+      @@parse_signatures = parse_signatures
 
       # set the doc type based on extension
       case self.file_ext
@@ -69,7 +71,7 @@ module Rain
       self.file_contents.each_line do |line|
 
         # parse the current line
-        result = self.parser.parse(line)
+        result = self.parser.parse(line, @@parse_signatures)
 
         # if there is no documentation for the result,
         # create a new part and then set the current part to nil.
@@ -95,6 +97,8 @@ module Rain
           self.current_part.set_route(result[:route])
         when :method
           self.current_part.set_method(result[:method])
+        when :signature
+          self.current_part.set_signature(result[:text])
         when :response
 
           # open the current response tag using the code as a key
@@ -133,9 +137,9 @@ module Rain
       # add the part and create a new one
       self.new_part
 
-      # remove any empty parts (for ruby docs)
+      # remove any empty parts or parts without method signatures (for ruby docs)
       if self.type == :RUBY
-        self.parts = self.parts.select{ |part| part.route != "//" }
+        self.parts = self.parts.select{ |part| part.route != "//" || !part.signature.nil? }
       end
     end
 

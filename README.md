@@ -34,6 +34,14 @@ raindoc generate <file/paths/*>
 
 Where file/paths are a list of `.md, .markdown, .txt, .mdown or .rb` files.
 
+### Options
+Rain has several command line options that can be used to change the output.
+
+|option|description|
+|------|-----------|
+|--s|Parses methods (def, get, put, post, delete) and classes and outputs them into the HTML output with their comments/docs|
+|--lp|Logs each file line parse's output so you can see where the parser may be going wrong if the desired effect is not achieved|
+
 ## Tags and Usage in Files
 There are several different tags that can be used in Rain. Here are their descriptions and below, an example of all of them together.
 
@@ -62,6 +70,7 @@ There are several different tags that can be used in Rain. Here are their descri
 # {param id integer default_value}
 #   This is the param description
 # {/param}
+# get '/person/:id' do
 ```
 
 ## Class Structure

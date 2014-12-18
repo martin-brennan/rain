@@ -16,9 +16,18 @@ module Rain
     # parses the current line, determining which tag
     # the line contains and returning the result
     # accordingly in a hash with the tag type
-    def parse(line)
+    def parse(line, parse_signatures = false)
+
       # return nil if there is no # on the line for ruby.
-      return nil if self.type == :RUBY && !line.strip().start_with?('#')
+      basic_stripped = line.strip().sub(' do', '')
+      return nil if self.type == :RUBY && basic_stripped == ''
+
+      # see if a signature part can be extracted if a signature is enabled
+      if parse_signatures
+        return nil if self.type == :RUBY && !basic_stripped.start_with?('#') && !(basic_stripped =~ /class|def|get|put|post|delete/)
+      else
+        return nil if self.type == :RUBY && !basic_stripped.start_with?('#')
+      end
 
       # strip blanks and # from the current line
       line = strip_current_line(line)
@@ -75,6 +84,16 @@ module Rain
           default: extract_param_default(line),
           open: open
         }
+      end
+
+      # return method signature if found
+      if parse_signatures
+        if line.start_with?('def ', 'class ', 'get "', "get '", 'put "', "put '", 'post "', "post '", 'delete "', "delete '")
+          return {
+            tag: :signature,
+            text: line
+          }
+        end
       end
 
       # return simple doc line if no tags fit

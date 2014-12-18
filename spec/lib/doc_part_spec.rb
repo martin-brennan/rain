@@ -74,4 +74,9 @@ describe Rain::DocPart do
 
     expect(h[:doc].length).to eq 2
   end
+
+  it "should set the method signature" do
+    @part.set_signature("def html_out(rendered)")
+    expect(@part.get_signature).to eq 'def html_out(rendered)'
+  end
 end

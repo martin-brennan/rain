@@ -1,3 +1,12 @@
+## 0.0.4 (2014-12-18)
+
+Features:
+
+- Added simple sidebar for documentation that links to docs and their parts
+- Added the signature tag, which reads the next line after the documentation ends to get
+the method signature or class (for docs that aren't to do with API routes)
+- Added HTTP header tag functionality
+
 ## 0.0.3 (2014-12-18)
 
 Bugfixes:

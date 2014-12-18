@@ -7,14 +7,15 @@ class Rain::CLI < Thor
 	@@docs = []
 
 	desc "generate [file/sources/**]", "Generates the rain documentation"
-	method_option :log_parse, aliases: "--lp", desc: "Show the output of each line parse"
+	method_option :log_parse, aliases: "--lp", desc: "Show the output of each line parse."
+	method_option :parse_signatures, aliases: "--s", desc: "Parse method and class documentation too. Defaults to false."
 	def generate(*sources)
 		print "Rain is parsing files in the directories #{sources} \n"
 
 		# loop through all of the file sources and generate docs
 		sources.each do |source|
 			print "Parsing #{source} \n"
-			@doc = Rain::Doc.new(source, File.read(Dir.pwd + "/#{source}"), options[:log_parse])
+			@doc = Rain::Doc.new(source, File.read(Dir.pwd + "/#{source}"), options[:log_parse].nil? ? false : true, options[:parse_signatures].nil? ? false : true)
 			@doc.parse
 
 			@@docs << @doc
@@ -41,6 +42,8 @@ class Rain::CLI < Thor
 	end
 
 	no_commands do
+
+		# Builds the HTML for each doc in the @@docs array.
 		def build_html
 
 			# delete the old output files and create the dir
@@ -86,7 +89,17 @@ class Rain::CLI < Thor
 			end
 		end
 
+		# Creates the html file for the specified doc
+		# with the HTML rendered from the ERB template
+		# 
+		# {param doc hash}
+		# 	A hash representation of the Rain::Doc class, containing a single document and its parts.
+		# {/param}
+		# {param html string}
+		# 	The HTML rendered from the ERB layout and doc template.
+		# {/param}
 		def output_html(doc, html)
+
 			# replace file_name extenstions with .html
 			file_name = File.basename(doc.file_name, doc.file_ext) + '.html'
 

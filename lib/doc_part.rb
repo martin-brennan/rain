@@ -1,6 +1,9 @@
 module Rain
+
+  # the doc part is a model to store information about
   class DocPart
-    attr_accessor :http_method, :responses, :route, :doc, :params, :headers
+
+    attr_accessor :http_method, :responses, :route, :doc, :params, :headers, :signature
 
     def initialize
       self.responses = []
@@ -124,6 +127,16 @@ module Rain
       return header[:text]
     end
 
+    # sets a method signature
+    def set_signature(sig)
+      self.signature = sig
+    end
+
+    # gets the method signature
+    def get_signature
+      self.signature
+    end
+
     def to_hash
       return {
         route: self.route,
@@ -131,7 +144,8 @@ module Rain
         headers: self.headers,
         doc: self.doc,
         responses: self.responses,
-        http_method: self.http_method
+        http_method: self.http_method,
+        signature: self.signature
       }
     end
   end
