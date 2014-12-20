@@ -103,7 +103,7 @@ module Rain
       if current_param.nil?
         self.params << {
           name: name,
-          text: description,
+          text: [description],
           type: type,
           default: default
         }
@@ -133,7 +133,7 @@ module Rain
       if current_header.nil?
         self.headers << {
           name: name,
-          text: description
+          text: [description]
         }
       else
         # otherwise append to the current header

@@ -1,21 +1,26 @@
-<!-- loop through all of the doc parts for the doc and render output -->
-<% parts.each do |part| %>
+<!-- loop through all of the doc doc_parts for the doc and render output -->
+<% parts.each do |doc_part| %>
 
   <!-- HTTP method and route (if both specified) -->
-  <% if !part[:route].nil? && !part[:http_method].nil? %>
-    <p id="<%= part[:route].gsub('/', '-').gsub(':', '') %>"><strong><%= part[:http_method] %></strong> <%= part[:route] %></p>
-  <% elsif !part[:signature].nil? %>
-    <p id="<%= part[:signature].gsub(' ', '-').gsub(',', '').gsub('(', '-').gsub(')', '-')[0..12] %>"><strong><%= part[:signature] %></strong></p>
+  <% if !doc_part[:route].nil? && !doc_part[:http_method].nil? %>
+  <div class="route-outer">
+    <div id="<%= doc_part[:route].gsub('/', '-').gsub(':', '') %>" class="route-method method-<%=doc_part[:http_method].downcase %>">
+      <%= doc_part[:http_method] %>
+    </div>
+    <div class="route-path"><%= doc_part[:route] %></div>
+  </div>
+  <% elsif !doc_part[:signature].nil? %>
+    <p id="<%= doc_part[:signature].gsub(' ', '-').gsub(',', '').gsub('(', '-').gsub(')', '-')[0..12] %>"><strong><%= doc_part[:signature] %></strong></p>
   <% end %>
 
-  <!-- display all of the docs together for the part -->
-  <p><% part[:doc].each do |doc| %>
-    <%= doc %>
+  <!-- display all of the docs together for the doc_part -->
+  <p><% doc_part[:doc].each do |doc| %>
+    <%= doc %>&nbsp;
   <% end %></p>
 
   <!-- show all of the params in a table -->
-  <% if part[:params].length > 0 %>
-    <h4>Parameters</h4>
+  <% if doc_part[:params].length > 0 %>
+    <h5>Parameters</h5>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -25,20 +30,20 @@
           <th>Description</th>
         </tr>
       </thead>
-      <% part[:params].each do |param| %>
+      <% doc_part[:params].each do |param| %>
         <tr>
           <td><%= param[:name] %></td>
           <td><%= param[:type] %></td>
           <td><%= param[:default].nil? ? 'N/A' : param[:default] %></td>
-          <td><%= param[:text] %></td>
+          <td><%= param[:text].join(' ') %></td>
         </tr>
       <% end %>
     </table>
   <% end %>
 
   <!-- show all of the headers in a table -->
-  <% if part[:headers].length > 0 %>
-    <h4>Headers</h4>
+  <% if doc_part[:headers].length > 0 %>
+    <h5>Headers</h5>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -46,21 +51,22 @@
           <th>Description</th>
         </tr>
       </thead>
-      <% part[:headers].each do |param| %>
+      <% doc_part[:headers].each do |param| %>
         <tr>
           <td><%= param[:name] %></td>
-          <td><%= param[:text] %></td>
+          <td><%= param[:text].join(' ') %></td>
         </tr>
       <% end %>
     </table>
   <% end %>
 
   <!-- show all of the responses with examples -->
-  <% if part[:responses].length > 0 %>
-    <h4>Response Examples</h4>
-    <% part[:responses].each do |response| %>
+  <% if doc_part[:responses].length > 0 %>
+    <h5>Response Examples</h5>
+    <% doc_part[:responses].each do |response| %>
       <p><strong><%= response[:code] %></strong> <%= response[:id].upcase %></p>
       <pre><code><%= response[:text].join("\n") %></code></pre>
     <% end %>
   <% end %>
+  <hr />
 <% end %>

@@ -113,7 +113,7 @@ class Rain::CLI < Thor
 						else
 							nav[:navdoc][:parts] << {
 								title: part[:route],
-								url: "#{html_file_name}##{part[:route].gsub('/', '-').gsub(':', '')}"
+								url: "#{html_file_name}##{part[:http_method].downcase}#{part[:route].gsub('/', '-').gsub(':', '')}"
 							}
 						end
 					end

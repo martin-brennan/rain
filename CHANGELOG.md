@@ -1,3 +1,10 @@
+## 0.0.6 (2014-12-20)
+
+- Added custom CSS styles on top of skeleton framework for method and route
+- Fixed doc arrays for params and headers
+- Made some other small CSS changes
+- Added a complex_rb test file with every type of route & method
+
 ## 0.0.5 (2014-12-20)
 
 Bugixes:
