@@ -54,26 +54,36 @@ There are several different tags that can be used in Rain. Here are their descri
 - header - A HTTP header that is required for the route.
 
 ```ruby
-# These are the docs that are not related
-# to any tags
-# 
-# {title This is the title}
+# gets a single person based on their id
+#
 # {method GET}
 # {route /person/:id}
-#
+# {param id integer}
+#   the id of the person to get
+#   uniquely identifies the person
+# {/param}
+# {header X-Custom-Header}
+#   This header is always required for the person route
+#   It always alters the route
+# {/header}
 # {response 200 ok}
 # {
-#   a: 1
+#   id: 1,
+#   name: 'John Smith',
+#   age: 22
 # }
 # {/response}
-# 
-# {param id integer default_value}
-#   This is the param description
-# {/param}
-# get '/person/:id' do
 ```
 
+# Contributing
+You can open issues and pull requests in this repository for feature requests or fixes for Rain. See the class structure in the next section for an idea of how everything works together.
+
+Rspec is used for the test framework, and all tests (along with sample files) are located under spec/. There is a full suite of > 50 tests but there is still room for more coverage.
+
 ## Class Structure
+
+Rain::CLI
+- Inherits from Thor for command-line interface
 
 Rain::Doc
 - handles looping through files

@@ -6,6 +6,9 @@ require 'fileutils'
 class Rain::CLI < Thor
 	@@docs = []
 
+	# loops through all of the specified source
+	# files, parses them line by line and produces
+	# doc and docpart output
 	desc "generate [file/sources/**]", "Generates the rain documentation"
 	method_option :log_parse, aliases: "--lp", desc: "Show the output of each line parse."
 	method_option :parse_signatures, aliases: "--s", desc: "Parse method and class documentation too. Defaults to false."
@@ -23,6 +26,7 @@ class Rain::CLI < Thor
 
 		print "\nBuilding html output... \n"
 		build_html
+		print "\nDone! See rain_out/ directory for output.\n"
 	end
 
 	# define the ascii art for the help command
@@ -39,6 +43,9 @@ class Rain::CLI < Thor
 		print "              \n"
 		print "basic usage:\n"
 		print "  rain generate file/**/*.rb\n"
+		print "options:\n"
+		print "  --lp logs all line parsing output to console\n"
+		print "  --s  generates docs for methods and class signatures\n"
 	end
 
 	no_commands do
