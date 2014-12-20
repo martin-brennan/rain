@@ -8,7 +8,7 @@ module Rain
     def initialize
       self.responses = []
       self.doc = []
-      self.route = '//'
+      self.route = nil
       self.params = []
       self.headers = []
     end
@@ -95,12 +95,26 @@ module Rain
     # adds a parameter with the specified type. also sets a
     # default value if specified
     def append_param(name, description, type, default = nil)
-      self.params << {
-        name: name,
-        text: description,
-        type: type,
-        default: default
-      }
+
+      # try and find the current param by name
+      current_param = self.params.select { |param| param[:name] == name }.first
+
+      # add new param if one doesn't exist
+      if current_param.nil?
+        self.params << {
+          name: name,
+          text: description,
+          type: type,
+          default: default
+        }
+      else
+        # otherwise append to the current param
+        self.params.each do |param|
+          if param[:name] == name
+            param[:text] << description
+          end
+        end
+      end
     end
 
     # gets a parameter by name. will return nil if
@@ -112,10 +126,23 @@ module Rain
     # adds a http header with name and
     # description of the header
     def append_header(name, description)
-      self.headers << {
-        name: name,
-        text: description
-      }
+
+      # try and find the current header by name
+      current_header = self.headers.select { |header| header[:name] == name }.first
+
+      if current_header.nil?
+        self.headers << {
+          name: name,
+          text: description
+        }
+      else
+        # otherwise append to the current header
+        self.headers.each do |header|
+          if header[:name] == name
+            header[:text] << description
+          end
+        end
+      end
     end
 
     # gets a header's description from the store

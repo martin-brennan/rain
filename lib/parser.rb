@@ -4,6 +4,7 @@ module Rain
 
     @@title_regex = /{title (.*?)}/m
     @@route_regex = /{route (.*?)}/m
+    @@header_regex = /{header (.*?)}/m
     @@response_regex = /{response (.*?) (.*?)}/m
     @@param_regex = /{param (.*?) (.*?)}/m
     @@param_regex_default = /{param (.*?) (.*?) (.*?)}/m
@@ -82,6 +83,17 @@ module Rain
           name: extract_param_name(line),
           type: extract_param_type(line),
           default: extract_param_default(line),
+          open: open
+        }
+      end
+
+      # param tag. must determine whether to open the tag
+      # for extra docs or close it
+      if is_header?(line)
+        open = line.start_with?('{/header') ? false : true
+        return {
+          tag: :header,
+          name: extract_header_name(line),
           open: open
         }
       end
@@ -172,6 +184,14 @@ module Rain
 
     def extract_param_default(line)
       line[@@param_regex_default, 3]
+    end
+
+    def is_header?(line)
+      line.start_with?('{header') || line.start_with?('{/header')
+    end
+
+    def extract_header_name(line)
+      line[@@header_regex, 1]
     end
   end
 end

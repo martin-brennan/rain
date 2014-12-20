@@ -99,6 +99,15 @@ describe Rain::Parser do
     expect(@parser.extract_param_default("{param limit integer 200}")).to eq '200'
   end
 
+  it "should determine if the current line has a header tag" do
+    expect(@parser.is_header?("{header X-Custom-Header}")).to eq true
+    expect(@parser.is_header?("{/header}")).to eq true
+  end
+
+  it "should get the header name" do
+    expect(@parser.extract_header_name("{header X-Custom-Header}")).to eq 'X-Custom-Header'
+  end
+
   it "should return the param tag and whether it is open or closed" do
     result = @parser.parse("  # {param id integer 100} ")
     expect(result[:name]).to eq "id"

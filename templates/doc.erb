@@ -36,6 +36,25 @@
     </table>
   <% end %>
 
+  <!-- show all of the headers in a table -->
+  <% if part[:headers].length > 0 %>
+    <h4>Headers</h4>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <% part[:headers].each do |param| %>
+        <tr>
+          <td><%= param[:name] %></td>
+          <td><%= param[:text] %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
   <!-- show all of the responses with examples -->
   <% if part[:responses].length > 0 %>
     <h4>Response Examples</h4>

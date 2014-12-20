@@ -10,7 +10,7 @@ describe Rain::DocPart do
     expect(@part.http_method).to eq nil
     expect(@part.responses).to eq []
     expect(@part.doc).to eq []
-    expect(@part.route).to eq '//'
+    expect(@part.route).to eq nil
     expect(@part.params).to eq []
     expect(@part.headers).to eq []
   end

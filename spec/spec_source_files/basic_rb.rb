@@ -8,7 +8,12 @@ module Routes
     # {route /person/:id}
     # {param id integer}
     #   the id of the person to get
+    #   uniquely identifies the person
     # {/param}
+    # {header X-Custom-Header}
+    #   This header is always required for the person route
+    #   It always alters the route
+    # {/header}
     # {response 200 ok}
     # {
     #   id: 1,

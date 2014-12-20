@@ -12,6 +12,7 @@ module Rain
     attr_accessor :parser, :type, :parts, :current_part, :lines, :title,
             :file_name, :file_contents, :file_ext
 
+    @@open_header = nil
     @@open_response = nil
     @@open_response_id = nil
     @@open_param = nil
@@ -108,6 +109,14 @@ module Rain
           else
             @@open_response = nil
           end
+        when :header
+
+          # open the current header tag using the code as a key
+          if result[:open]
+            @@open_header = result[:name]
+          else
+            @@open_header = nil
+          end
         when :param
 
           # open the current param tag using the name as the key
@@ -126,6 +135,8 @@ module Rain
             self.current_part.append_response(@@open_response.to_i, @@open_response_id, result[:text])
           elsif !@@open_param.nil?
             self.current_part.append_param(@@open_param, result[:text], @@open_param_type, @@open_param_default)
+          elsif !@@open_header.nil?
+            self.current_part.append_header(@@open_header, result[:text])
           else
             self.current_part.append_doc(result[:text])
           end
@@ -139,7 +150,7 @@ module Rain
 
       # remove any empty parts or parts without method signatures (for ruby docs)
       if self.type == :RUBY
-        self.parts = self.parts.select{ |part| part.route != "//" || !part.signature.nil? }
+        self.parts = self.parts.select{ |part| !part.route.nil? || !part.signature.nil? }
       end
     end
 

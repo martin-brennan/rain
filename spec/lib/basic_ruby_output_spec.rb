@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "basic ruby output from the doc parser" do
-  @@doc = Rain::Doc.new("basic_rb.rb", File.read(Dir.pwd + '/spec/spec_source_files/basic_rb.rb'), true)
+  @@doc = Rain::Doc.new("basic_rb.rb", File.read(Dir.pwd + '/spec/spec_source_files/basic_rb.rb'))
   @@doc.parse
 
   it "has the correct title" do
@@ -9,6 +9,7 @@ describe "basic ruby output from the doc parser" do
   end
 
   it "has 1 doc parts" do
+    p @@doc.parts
     expect(@@doc.parts.length).to eq 1
   end
 

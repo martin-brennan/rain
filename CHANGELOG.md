@@ -1,3 +1,12 @@
+## 0.0.5 (2014-12-20)
+
+Bugixes:
+
+- Added proper header support and output
+- Fixed headers and params to support multiline docs
+- Added header output to basic doc template
+- Changed default route value to nil instead of //
+
 ## 0.0.4 (2014-12-18)
 
 Features:
