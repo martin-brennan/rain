@@ -23,15 +23,18 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
+
         <h3>Installation <a href="http://badge.fury.io/rb/rain-doc"><img src="https://badge.fury.io/rb/rain-doc.svg" alt="Gem Version" height="18"></a></h3>
         <p>Simply install from rubygems.org. This will install the gem, the <code>raindoc</code> executable and the template files for the gem.</p>
         <pre><code class="bash">gem install rain-doc</code></pre>
         <p>Or, include the gem in your Gemfile if you're using Bundler.</p>
         <pre><code class="ruby">gem 'rain-doc'</code></pre>
+
         <h3>Usage</h3>
         <p>Use the CLI provided (via Thor) to run the following command:</p>
         <pre><code class="bash">raindoc generate file/paths/*</code></pre>
         <p>Where file/paths are a list of .md, .markdown, .txt, .mdown or .rb files.</p>
+
         <h4>Options</h4>
         <p>Rain has several command line options that can be used to change the output.</p>
         <table class="u-full-width">
@@ -48,6 +51,10 @@
             <td>Logs each file line parse's output so you can see where the parser may be going wrong if the desired effect is not achieved</td>
           </tr>
         </table>
+
+        <h3>Examples</h3>
+        <p>For some examples of the current rain output, see the example below (which has a GET, PUT, POST and DELETE route).</p>
+        <a href="rain_out/complex_rb.html">Rain Output Example</a>
       </div>
     </div>
   </div>
