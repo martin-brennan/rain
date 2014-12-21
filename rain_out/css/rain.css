@@ -1,0 +1,36 @@
+hr {
+  width: 80%;
+}
+p {
+  font-size: 120%;
+}
+
+/* Styles for how the route & method display as well as their color. */
+.route-outer {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+.route-method {
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 10px;
+  color: white;
+}
+.route-path {
+  display: inline-block;
+  padding: 5px 10px;
+}
+.method-get, .method-head {
+  background-color: #009C5d;
+}
+.method-post {
+  background-color: #e58500;
+}
+.method-put, .method-patch {
+  background-color: #075494;
+}
+.method-delete {
+  background-color: #e54400;
+}

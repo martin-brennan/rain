@@ -1,0 +1,126 @@
+<html>
+<head>
+  <title>Rain | Person Routes</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+  <link rel="stylesheet" type="text/css" href="css/rain.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="three columns" style="padding: 20px 0">
+        <h5>Navigation</h5>
+        
+          <ul>
+  <li><a href="basic_md.html">Spec/Spec Source Files/Basic Md</a>
+  <ul></ul>
+  </li>
+</ul>
+        
+          <ul>
+  <li><a href="basic_rb.html">Person Routes</a>
+  <ul>
+    <li><a href="basic_rb.html#get-person-id">/person/:id</a></li>
+  </ul>
+  </li>
+</ul>
+        
+          <ul>
+  <li><a href="complex_rb.html">Person Routes</a>
+  <ul>
+    <li><a href="complex_rb.html#get-person-id">/person/:id</a></li>
+  
+    <li><a href="complex_rb.html#post-person">/person</a></li>
+  
+    <li><a href="complex_rb.html#put-person-id">/person/:id</a></li>
+  
+    <li><a href="complex_rb.html#delete-person-id">/person/:id</a></li>
+  </ul>
+  </li>
+</ul>
+        
+      </div>
+      <div class="nine columns" style="padding: 20px 0">
+        <h2>Person Routes</h2>
+        <!-- loop through all of the doc doc_parts for the doc and render output -->
+
+
+  <!-- HTTP method and route (if both specified) -->
+  
+  <div class="route-outer">
+    <div id="-person-id" class="route-method method-get">
+      GET
+    </div>
+    <div class="route-path">/person/:id</div>
+  </div>
+  
+
+  <!-- display all of the docs together for the doc_part -->
+  <p>
+    gets a single person based on their id&nbsp;
+  
+    
+&nbsp;
+  </p>
+
+  <!-- show all of the params in a table -->
+  
+    <h5>Parameters</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>id</td>
+          <td>integer</td>
+          <td>N/A</td>
+          <td>the id of the person to get uniquely identifies the person</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the headers in a table -->
+  
+    <h5>Headers</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>X-Custom-Header</td>
+          <td>This header is always required for the person route It always alters the route</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the responses with examples -->
+  
+    <h5>Response Examples</h5>
+    
+      <p><strong>200</strong> OK</p>
+      <pre><code>{
+id: 1,
+name: 'John Smith',
+age: 22
+}</code></pre>
+    
+  
+  <hr />
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

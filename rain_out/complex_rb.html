@@ -1,0 +1,293 @@
+<html>
+<head>
+  <title>Rain | Person Routes</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+  <link rel="stylesheet" type="text/css" href="css/rain.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="three columns" style="padding: 20px 0">
+        <h5>Navigation</h5>
+        
+          <ul>
+  <li><a href="basic_md.html">Spec/Spec Source Files/Basic Md</a>
+  <ul></ul>
+  </li>
+</ul>
+        
+          <ul>
+  <li><a href="basic_rb.html">Person Routes</a>
+  <ul>
+    <li><a href="basic_rb.html#get-person-id">/person/:id</a></li>
+  </ul>
+  </li>
+</ul>
+        
+          <ul>
+  <li><a href="complex_rb.html">Person Routes</a>
+  <ul>
+    <li><a href="complex_rb.html#get-person-id">/person/:id</a></li>
+  
+    <li><a href="complex_rb.html#post-person">/person</a></li>
+  
+    <li><a href="complex_rb.html#put-person-id">/person/:id</a></li>
+  
+    <li><a href="complex_rb.html#delete-person-id">/person/:id</a></li>
+  </ul>
+  </li>
+</ul>
+        
+      </div>
+      <div class="nine columns" style="padding: 20px 0">
+        <h2>Person Routes</h2>
+        <!-- loop through all of the doc doc_parts for the doc and render output -->
+
+
+  <!-- HTTP method and route (if both specified) -->
+  
+  <div class="route-outer">
+    <div id="-person-id" class="route-method method-get">
+      GET
+    </div>
+    <div class="route-path">/person/:id</div>
+  </div>
+  
+
+  <!-- display all of the docs together for the doc_part -->
+  <p>
+    Gets a single person based on their id&nbsp;
+  
+    
+&nbsp;
+  </p>
+
+  <!-- show all of the params in a table -->
+  
+    <h5>Parameters</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>id</td>
+          <td>integer</td>
+          <td>N/A</td>
+          <td>the id of the person to get uniquely identifies the person</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the headers in a table -->
+  
+    <h5>Headers</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>X-Custom-Header</td>
+          <td>This header is always required for the person route It always alters the route</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the responses with examples -->
+  
+    <h5>Response Examples</h5>
+    
+      <p><strong>200</strong> OK</p>
+      <pre><code>{
+id: 1,
+name: 'John Smith',
+age: 22
+}</code></pre>
+    
+  
+  <hr />
+
+
+  <!-- HTTP method and route (if both specified) -->
+  
+  <div class="route-outer">
+    <div id="-person" class="route-method method-post">
+      POST
+    </div>
+    <div class="route-path">/person</div>
+  </div>
+  
+
+  <!-- display all of the docs together for the doc_part -->
+  <p>
+    Adds a new person and returns their id.&nbsp;
+  
+    
+&nbsp;
+  </p>
+
+  <!-- show all of the params in a table -->
+  
+    <h5>Parameters</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>name</td>
+          <td>string</td>
+          <td>N/A</td>
+          <td>The name of the new person to create</td>
+        </tr>
+      
+        <tr>
+          <td>age</td>
+          <td>integer</td>
+          <td>0</td>
+          <td>The age of the new person (default 0)</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the headers in a table -->
+  
+
+  <!-- show all of the responses with examples -->
+  
+    <h5>Response Examples</h5>
+    
+      <p><strong>201</strong> CREATED</p>
+      <pre><code>3904</code></pre>
+    
+  
+  <hr />
+
+
+  <!-- HTTP method and route (if both specified) -->
+  
+  <div class="route-outer">
+    <div id="-person-id" class="route-method method-put">
+      PUT
+    </div>
+    <div class="route-path">/person/:id</div>
+  </div>
+  
+
+  <!-- display all of the docs together for the doc_part -->
+  <p>
+    Updates the person's age.&nbsp;
+  
+    
+&nbsp;
+  </p>
+
+  <!-- show all of the params in a table -->
+  
+    <h5>Parameters</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>id</td>
+          <td>integer</td>
+          <td>N/A</td>
+          <td>The id of the person</td>
+        </tr>
+      
+        <tr>
+          <td>age</td>
+          <td>integer</td>
+          <td>N/A</td>
+          <td>The age of the person</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the headers in a table -->
+  
+
+  <!-- show all of the responses with examples -->
+  
+  <hr />
+
+
+  <!-- HTTP method and route (if both specified) -->
+  
+  <div class="route-outer">
+    <div id="-person-id" class="route-method method-delete">
+      DELETE
+    </div>
+    <div class="route-path">/person/:id</div>
+  </div>
+  
+
+  <!-- display all of the docs together for the doc_part -->
+  <p>
+    Deletes the person&nbsp;
+  
+    
+&nbsp;
+  </p>
+
+  <!-- show all of the params in a table -->
+  
+    <h5>Parameters</h5>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td>id</td>
+          <td>integer</td>
+          <td>N/A</td>
+          <td>The id of the person to delete</td>
+        </tr>
+      
+    </table>
+  
+
+  <!-- show all of the headers in a table -->
+  
+
+  <!-- show all of the responses with examples -->
+  
+  <hr />
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
