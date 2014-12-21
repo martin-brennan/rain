@@ -42,6 +42,10 @@ Rain has several command line options that can be used to change the output.
 |--s|Parses methods (def, get, put, post, delete) and classes and outputs them into the HTML output with their comments/docs|
 |--lp|Logs each file line parse's output so you can see where the parser may be going wrong if the desired effect is not achieved|
 
+## Templating
+
+See [TEMPLATES.md](TEMPLATES.md) for information on Rain's simple template system and how to change the layout and output.
+
 ## Tags and Usage in Files
 There are several different tags that can be used in Rain. Here are their descriptions and below, an example of all of them together.
 
