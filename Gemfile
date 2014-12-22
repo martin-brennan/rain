@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rspec', group: :development
-gem 'guard-rspec', group: :development
+gem 'rspec', '3.1.0', group: :development
+gem 'guard-rspec', '4.5.0', group: :development
 
-gem 'thor'
+gem 'redcarpet', '3.2.2'
+gem 'thor', '0.19.1'

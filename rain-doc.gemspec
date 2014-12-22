@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rspec', '4.5.0'
 
   s.add_runtime_dependency 'thor', '0.19.1'
+  s.add_runtime_dependency 'redcarpet', '3.2.2'
 end

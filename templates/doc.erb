@@ -14,13 +14,13 @@
   <% end %>
 
   <!-- display all of the docs together for the doc_part -->
-  <p><% doc_part[:doc].each do |doc| %>
-    <%= doc %>&nbsp;
-  <% end %></p>
+  <div class="rain-doc-markdown">
+    <%= doc_part[:markdown] %>
+  </p>
 
   <!-- show all of the params in a table -->
   <% if doc_part[:params].length > 0 %>
-    <h5>Parameters</h5>
+    <h4>Parameters</h4>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -35,7 +35,7 @@
           <td><%= param[:name] %></td>
           <td><%= param[:type] %></td>
           <td><%= param[:default].nil? ? 'N/A' : param[:default] %></td>
-          <td><%= param[:text].join(' ') %></td>
+          <td><%= param[:markdown] %></td>
         </tr>
       <% end %>
     </table>
@@ -43,7 +43,7 @@
 
   <!-- show all of the headers in a table -->
   <% if doc_part[:headers].length > 0 %>
-    <h5>Headers</h5>
+    <h4>Headers</h4>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -51,10 +51,10 @@
           <th>Description</th>
         </tr>
       </thead>
-      <% doc_part[:headers].each do |param| %>
+      <% doc_part[:headers].each do |header| %>
         <tr>
-          <td><%= param[:name] %></td>
-          <td><%= param[:text].join(' ') %></td>
+          <td><%= header[:name] %></td>
+          <td><%= header[:markdown] %></td>
         </tr>
       <% end %>
     </table>
@@ -62,7 +62,7 @@
 
   <!-- show all of the responses with examples -->
   <% if doc_part[:responses].length > 0 %>
-    <h5>Response Examples</h5>
+    <h4>Response Examples</h4>
     <% doc_part[:responses].each do |response| %>
       <p><strong><%= response[:code] %></strong> <%= response[:id].upcase %></p>
       <pre><code><%= response[:text].join("\n") %></code></pre>

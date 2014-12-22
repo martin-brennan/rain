@@ -35,6 +35,20 @@ p {
   background-color: #e54400;
 }
 
+/* Styles to make rendered markdown output fonts smaller than defaults, to avoid gigantic headers etc. */
+.rain-doc-markdown p,
+.rain-doc-markdown h1, .rain-doc-markdown h2, .rain-doc-markdown h3,
+.rain-doc-markdown h4, .rain-doc-markdown h5, .rain-doc-markdown h6 {
+  font-size: 1.2em;
+}
+.rain-doc-markdown h1 { font-size: 2em; }
+.rain-doc-markdown h2 { font-size: 1.8em; }
+.rain-doc-markdown h3 { font-size: 1.6em; }
+.rain-doc-markdown h4 { font-size: 1.4em; }
+.rain-doc-markdown h5 { font-size: 1.2em; }
+.rain-doc-markdown h6 { font-size: 1em; }
+.rain-doc-markdown table > tbody > tr > td > p { font-size: 1em !important; margin: 0 !important; }
+
 /* Footer and rain version information styles */
 .rain-version-info {
   text-align: center;

@@ -1,3 +1,9 @@
+## 0.0.8 (204-12-22)
+
+- Markdown doc lines and single .md, .txt, .mdown, and .markdown files are all converted to HTML for the output.
+- Using Redcarpet for markdown rendering.
+- Slight base CSS and template changes and additions to account for markdown.
+
 ## 0.0.7 (204-12-22)
 
 - Added the ability to add custom CSS and JS files to layout.erb output.

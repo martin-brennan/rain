@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 module Rain
   class Output
 
@@ -56,6 +58,12 @@ module Rain
 
         # create an openstruct from the current doc and render into the template
         doc_os = OpenStruct.new(doc.to_hash)
+
+        # convert the doc lines from each of the doc parts
+        # from markdown to HTML.
+        doc_os = doc_to_markdown(doc_os)
+
+        # render the doc into the ERB template.
         doc_rendered = ERB.new(doc_template).result(doc_os.instance_eval {binding})
 
         # create a struct with the rendered doc output then render into the layout with nav
@@ -174,6 +182,29 @@ module Rain
 
       # write the output to the file
       File.open("./rain_out/#{file_name}", 'w') { |file| file.write(html) }
+    end
+
+    def doc_to_markdown(doc)
+
+      # loop through all of the doc pars
+      markdown_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, tables: true, fenced_code_blocks: true)
+      doc[:parts].each do |part|
+
+        # join the lines and render with markdown.
+        part[:markdown] = markdown_renderer.render(part[:doc].join("\n"))
+
+        # loop through all of the params and render their markdown
+        part[:params].each do |param|
+          param[:markdown] = markdown_renderer.render(param[:text].join("\n"))
+        end
+
+        # loop through all of the headers and render their markdown
+        part[:headers].each do |header|
+          header[:markdown] = markdown_renderer.render(header[:text].join("\n"))
+        end
+      end
+
+      doc
     end
 
   end
