@@ -4,6 +4,12 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
   <link rel="stylesheet" type="text/css" href="css/rain.css" />
+  <% custom_css.each do |css| %>
+    <link rel="stylesheet" type="text/css" href="<%= css %>" />
+  <% end %>
+  <% custom_js.each do |js| %>
+    <script type="text/javascript" src="<%= js %>"></script>
+  <% end %>
 </head>
 <body>
   <div class="container">

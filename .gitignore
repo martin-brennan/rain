@@ -34,3 +34,5 @@ build/
 .rvmrc
 
 rain_out
+templates/css/test.css
+templates/js/test.js
