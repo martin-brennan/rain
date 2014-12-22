@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rain-doc'
-  s.version     = '0.0.7'
+  s.version     = '0.0.8'
   s.licenses    = ['MIT']
   s.summary     = "Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc."
   s.description = "Rain is a gem to generate beautiful and customizable API documentation, inspired by yard and rdoc. \
