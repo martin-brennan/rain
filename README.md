@@ -10,7 +10,7 @@ The aim of rain is to generate beautiful API documentation from a ruby comment s
 
 The documentation can be inline in .rb files, or separate .md or .txt files for overall architecture documentation.
 
-Rain also allows a large amount of customization when it comes to templating and appearance of the API documentation. branding and unity of documentation appearance is important and rain offers a simple ebr-based template system.
+Rain also allows a large amount of customization when it comes to templating and appearance of the API documentation. branding and unity of documentation appearance is important and rain offers a simple ERB-based template system.
 
 Rain is still currently a WIP and not a completely stable release. All parsing and file reading functionality is complete as is template output, but the actual template layout and styles are still being worked on.
 
