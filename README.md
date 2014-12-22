@@ -46,6 +46,8 @@ Rain has several command line options that can be used to change the output.
 
 See [TEMPLATES.md](TEMPLATES.md) for information on Rain's simple template system and how to change the layout and output.
 
+The templates also use the `rainopts.yml` file in the layout template to provide extra global information about the API. See TEMPLATES.md for more information on this too.
+
 ## Tags and Usage in Files
 There are several different tags that can be used in Rain. Here are their descriptions and below, an example of all of them together.
 
@@ -104,3 +106,9 @@ Rain::DocPart
 - Stores information about the current documentation block
 - Stores method, doc, route, responses, params
 - Storage model for all of the different parts of each block
+
+Rain::Output
+- Handles reading of template and asset files
+- Handles sending doc information and parts to be rendered into ERB templates
+- Uses parsed rainopts.yml file in output
+- Renders HTML to rain_out directory

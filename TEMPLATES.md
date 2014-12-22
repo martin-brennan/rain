@@ -14,6 +14,10 @@ Rain uses some basic CSS files under templates/css. They are `normalize.css` for
 
 Any extra CSS files you add will be automatically added to the `layout.erb` output in the header.
 
+### JavaScript
+
+The same goes for JavaScript files. Add any custom js files to templates/js and they will be inserted into the header for the HTML output of the layout.
+
 ## layout.erb
 
 This template controls the layout of the navigation and the main doc area, as well as providing a place for CSS and JS file referencing. Below is an overview of the variables used:
@@ -24,6 +28,19 @@ This template controls the layout of the navigation and the main doc area, as we
 |nav_parts|An array of navigation parts, which contain the main page link as well as sub-section links for routes and signatures. These parts are an output of the `nav.erb` template.|
 |doc_output|The output of the `doc.erb` template and the main content of the page.|
 |custom_css|An array of custom CSS files to link to in the templates/css directory.|
+
+### rainopts.yml
+
+The rainopts file is a set of settings used to customize the appearance of the rain output through global settings. If this file is not provided, then the one included with the gem will be used.
+
+|setting|description|
+|----|-----------|
+|header_img_url|The url of the image to use in the top left of the header|
+|api_title|The title of the API shown at the top of the page|
+|api_url|The base url of the API|
+|api_version|The version of the API that the docs are for|
+|source_url|The url for the source code repo for the API|
+|company_name|The name of the company who developed the API (shown in the footer)|
 
 ## doc.erb
 
