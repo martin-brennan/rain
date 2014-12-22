@@ -13,6 +13,25 @@
 </head>
 <body>
   <div class="container">
+    <div class="row" id="header" style="margin-top: 20px;">
+      <div class="two columns">
+        <% if !rainopts["header_img_url"].nil? %>
+          <img style="margin: 0 auto; width: 80%;" src="<%= rainopts["header_img_url"] %>" />
+        <% end %>
+      </div>
+      <div class="ten columns">
+        <h4 style="margin-bottom: 0;"><%= rainopts["api_title"] %></h4>
+        <p style="margin: 0;">
+          [v<%= rainopts["api_version"].nil? ? '0.0.0' : rainopts["api_version"] %>]&nbsp;
+          <a href="<%= rainopts["api_url"] %>"><%= rainopts["api_url"] %></a>
+        </p>
+        <p style="margin: 0;">
+          <% if !rainopts["source_url"].nil? %>
+          See source at <a href="<%= rainopts["source_url"] %>"><%= rainopts["source_url"] %></a>
+          <% end %>
+        </p>
+      </div>
+    </div>
     <div class="row">
       <div class="three columns" style="padding: 20px 0">
         <h5>Navigation</h5>
@@ -24,6 +43,17 @@
         <h2><%= title %></h2>
         <%= doc_output %>
       </div>
+    </div>
+    <div class="row" id="footer">
+      <div class="three columns">&nbsp;</div>
+      <div class="six columns">
+        <div class="rain-version-info">
+          <p>Rain v<%= Gem::Specification.find_by_name("rain-doc").version.to_s %></p>
+          <p>See source at <a href="https://github.com/martin-brennan/rain">https://github.com/martin-brennan/rain</a>.</p>
+          <p>Gem at <a href="https://rubygems.org/gems/rain-doc">https://rubygems.org/gems/rain-doc</a></p>
+        </div>  
+      </div>
+      <div class="three columns">&nbsp;</div>
     </div>
   </div>
 </body>

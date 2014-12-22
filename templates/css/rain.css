@@ -34,3 +34,14 @@ p {
 .method-delete {
   background-color: #e54400;
 }
+
+/* Footer and rain version information styles */
+.rain-version-info {
+  text-align: center;
+}
+
+.rain-version-info p {
+  font-size: 80%;
+  color: #ccc;
+  margin: 4px 0;
+}

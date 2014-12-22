@@ -2,6 +2,7 @@
 
 - Added the ability to add custom CSS and JS files to layout.erb output.
 - Added rainopts.yml file, in which the user can specify the header image url, API title, API url, source repo URL, company name, and API version.
+- Added parts to layout to use the rainopts.yml file.
 
 ## 0.0.6 (2014-12-20)
 

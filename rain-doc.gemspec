@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
                    Branding and unity of documentation appearance is important and Rain offers a simple ebr-based template system."
   s.authors     = ["Martin Brennan"]
   s.email       = 'mjrbrennan@gmail.com'
-  s.files       = ["lib/rain.rb", "lib/parser.rb", "lib/doc.rb", "lib/doc_part.rb"] + Dir["templates/*.erb"] + Dir["templates/css/*.css"]
+  s.files       = ["lib/rain.rb", "lib/parser.rb", "lib/doc.rb", "lib/doc_part.rb", "lib/output.rb"] + Dir["templates/*.erb"] + Dir["templates/css/*.css"]
   s.homepage    = 'http://martin-brennan.github.io/rain/'
   s.bindir      = 'bin'
 
