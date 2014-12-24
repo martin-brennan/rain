@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.executables << 'raindoc'
 
-  s.post_install_message = "Rain installed successfully! Run rain generate file/paths/*.rb to get started."
+  s.post_install_message = "Rain installed successfully! Run raindoc generate file/paths/*.rb to get started."
 
   s.add_development_dependency 'rspec', '3.1.0'
   s.add_development_dependency 'guard-rspec', '4.5.0'
